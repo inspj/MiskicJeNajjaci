@@ -1,9 +1,81 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Miskic</title>
-  </head>
-  <body>
-    <center><p>Would you be my Valentine?</p></center>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Button</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .buttons {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #704eaf;
+            color: white;
+            border-radius: 5px;
+            transition: 0.3s;
+            position: absolute;
+        }
+        button:hover {
+            background-color: #666c72;
+        }
+        #moving-button {
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Try to Click the Moving Button!</h1>
+        <div class="buttons">
+            <button id="static-button" onclick="alert('You clicked Button 1!')">Static Button</button>
+            <button id="moving-button">Catch Me!</button>
+        </div>
+    </div>
+
+    <script>
+        const movingButton = document.getElementById("moving-button");
+
+        document.addEventListener("mousemove", (event) => {
+            const buttonRect = movingButton.getBoundingClientRect();
+            const distance = Math.hypot(
+                event.clientX - (buttonRect.left + buttonRect.width / 2),
+                event.clientY - (buttonRect.top + buttonRect.height / 2)
+            );
+
+            if (distance < 100) { // Move away when the mouse gets close
+                const newX = Math.random() * (window.innerWidth - buttonRect.width);
+                const newY = Math.random() * (window.innerHeight - buttonRect.height);
+                movingButton.style.left = `${newX}px`;
+                movingButton.style.top = `${newY}px`;
+            }
+        });
+    </script>
+
+</body>
 </html>
