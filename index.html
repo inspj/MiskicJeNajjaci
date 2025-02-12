@@ -18,6 +18,8 @@
         .container {
             text-align: center;
             position: relative;
+            width: 400;
+            height: 400;
         }
         h1 {
             margin-bottom: 20px;
@@ -69,7 +71,7 @@
             );
 
             if (distance < 100) { // Move away when the mouse gets close
-                const newX = Math.random() * (window.innerWidth - buttonRect.width);
+                const newX = Math.random() * (window.innserWidth - buttonRect.width);
                 const newY = Math.random() * (window.innerHeight - buttonRect.height);
                 movingButton.style.left = `${newX}px`;
                 movingButton.style.top = `${newY}px`;
